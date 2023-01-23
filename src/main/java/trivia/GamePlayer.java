@@ -11,9 +11,13 @@ public class GamePlayer {
 
     public static void main(String[] args) {
         System.out.println("*** Welcome to Trivia Game ***\n");
-        System.out.println("Enter number of players: 1-4");
-        int playerCount = Integer.parseInt(scanner.nextLine());
-        if (playerCount < 1 || playerCount > 4) throw new IllegalArgumentException("No player 1..4");
+
+        int playerCount;
+        do {
+            System.out.println("Enter number of players: 2-6");
+            playerCount = Integer.parseInt(scanner.nextLine());
+        } while (playerCount < 2 || playerCount > 6);
+
         System.out.println("Reading names for " + playerCount + " players:");
 
         Game game = new Game();
