@@ -12,8 +12,8 @@ import static org.junit.Assert.assertEquals;
 
 public class GameTest {
 	@Test
-	public void caracterizationTest() {
-		// runs 10.000 "random" games to see the output of old and new code mathces
+	public void characterizationTest() {
+		// runs 10.000 "random" games to see the output of old and new code matches
 		for (int seed = 1; seed < 10_000; seed++) {
 			testSeed(seed, false);
 		}
@@ -38,9 +38,9 @@ public class GameTest {
 	private String extractOutput(Random rand, IGame aGame) {
 		PrintStream old = System.out;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		try (PrintStream inmemory = new PrintStream(baos)) {
-			// WARNING: System.out.println() doesn't work in this try {} as the sysout is captured and recorded in memory.
-			System.setOut(inmemory);
+		try (PrintStream inMemory = new PrintStream(baos)) {
+			// WARNING: System.out.println() doesn't work in this try {} as the stdout is captured and recorded in memory.
+			System.setOut(inMemory);
 
 			aGame.add("Chet");
 			aGame.add("Pat");
