@@ -6,7 +6,7 @@ Arranged by Victor Rentea
 ## The problem
 Here is a preview of a game in action.
 ![Trivia Game Picture](art/trivia.jpg)
-Each turn a player: rolls the dice and has to answer to a question from the deck corresponding to its current position. If the answer is correct [s]he gets coins. If incorrect, [s]he is sent to the prison. The board has 12 positions.
+Each turn a player: rolls the dice and has to answer to a question from the deck corresponding to its current position. If the answer is correct they get coins. If incorrect, they are sent to the prison. The board has 12 positions.
 
 You should discover more the details from actual code, just like in real-life. Good luck!
 
@@ -66,9 +66,9 @@ Try to implement some of the following further **change requests**:
 - The must be minimum 2 players to start the game
 - The game must not start until all players are added. In other words, new players can't join after the game has started.
 - No two players are allowed to have the same name.
-- [hard] After a wrong answer, a player only goes to Penalty box if they fail to answer a second question in the same category. In other words, he/she is given a 'second chance' from the same category.
+- [hard] After a wrong answer, a player only goes to Penalty box if they fail to answer a second question in the same category. In other words, they are given a 'second chance' from the same category.
 - [hard] Load the question from 4 properties files: rock.properties, sports.properties ... 
-- [hard] A streak is a consecutive sequence of correct answers for a given player. After providing 3 consecutive correct answers, a player earns 2 points with any subsequent correct answer. When a player gives a wrong answer: (a) if (s)he was on a streak, the streak ends OR (b) if there was no streak, the player goes to Penalty box. (In other words, with a running active streak a player does not go to Penalty box, but instead he/she looses the streak). In addition, the game should be won at a double amount of points.
+- [hard] A streak is a consecutive sequence of correct answers for a given player. After providing 3 consecutive correct answers, a player earns 2 points with any subsequent correct answer. When a player gives a wrong answer: (a) if they were on a streak, the streak ends OR (b) if there was no streak, the player goes to Penalty box. (In other words, with a running active streak a player does not go to Penalty box, but instead they lose the streak). In addition, the game should be won at a double amount of points.
 
 How hard was it to implement these changes ?
 
