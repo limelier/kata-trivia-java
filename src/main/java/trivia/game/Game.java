@@ -6,10 +6,11 @@ import java.util.*;
 public class Game {
     private static final int BOARD_LENGTH = 10;
     private static final int PURSE_WIN_THRESHOLD = 6;
-    
+
     List<Player> players = new ArrayList<>();
     Map<Category, Deque<String>> questionDecks = new EnumMap<>(Category.class);
     int currentPlayerIndex = 0;
+    boolean gameStarted = false;
 
     public Game() {
         // initialize with fake sample questions
@@ -25,14 +26,33 @@ public class Game {
         }
     }
 
+    /**
+     * Add a player to the game.
+     *
+     * @param playerName the name of the new player
+     * @throws IllegalStateException    called after the game has already started
+     * @throws IllegalArgumentException a player with the same name already exists
+     */
     public void addPlayer(String playerName) {
+        if (gameStarted) throw new IllegalStateException("Cannot add players after the game has started");
+        if (players.stream().anyMatch(it -> it.getName().equals(playerName))) {
+            throw new IllegalArgumentException("A player with the name " + playerName + " already exists");
+        }
+
         players.add(new Player(playerName));
 
         println(playerName + " was added");
         println("They are player number " + players.size());
     }
 
+    /**
+     * Process a die roll and display the question.
+     *
+     * @param roll the value of the die
+     */
     public void roll(int roll) {
+        gameStarted = true;
+
         Player player = players.get(currentPlayerIndex);
 
         println(player.getName() + " is the current player");
@@ -57,6 +77,11 @@ public class Game {
         println(questionDecks.get(category).pop());
     }
 
+    /**
+     * Change the state of the game after a right answer.
+     *
+     * @return whether the game will continue
+     */
     public boolean rightAnswer() {
         Player player = players.get(currentPlayerIndex);
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
@@ -73,6 +98,11 @@ public class Game {
         }
     }
 
+    /**
+     * Change the state of the game after a wrong answer.
+     *
+     * @return whether the game will continue
+     */
     public boolean wrongAnswer() {
         Player player = players.get(currentPlayerIndex);
 
@@ -84,12 +114,16 @@ public class Game {
         return true;
     }
 
-    /** Print a line. */
+    /**
+     * Print a line.
+     */
     private void println(String x) {
         System.out.println(x);
     }
-    
-    /** Get the category corresponding to a location. */
+
+    /**
+     * Get the category corresponding to a location.
+     */
     private Category getCategory(int location) {
         Category[] categories = Category.values();
         return categories[location % categories.length];
