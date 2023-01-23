@@ -32,7 +32,7 @@ public class GameTest {
 	@Test
 	@Ignore("enable back and set a particular seed to see the output")
 	public void oneSeed() {
-		testSeed(3, true);
+		testSeed(1, true);
 	}
 
 	private String extractOutput(Random rand, IGame aGame) {

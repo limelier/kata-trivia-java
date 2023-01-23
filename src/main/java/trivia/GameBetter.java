@@ -69,7 +69,7 @@ public class GameBetter implements IGame {
             player.addToPurse(1);
             println(player.getName() + " now has " + player.getPurse() + " Gold Coins.");
 
-            return player.getPurse() <= PURSE_WIN_THRESHOLD;
+            return player.getPurse() < PURSE_WIN_THRESHOLD;
         }
     }
 
