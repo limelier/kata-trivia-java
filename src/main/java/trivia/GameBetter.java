@@ -23,7 +23,7 @@ public class GameBetter implements IGame {
         }
     }
 
-    public void add(String playerName) {
+    public void addPlayer(String playerName) {
         players.add(new Player(playerName));
 
         System.out.println(playerName + " was added");
@@ -75,11 +75,6 @@ public class GameBetter implements IGame {
         };
     }
 
-    /**
-     * Execute actions for a right answer.
-     *
-     * @return whether the game should continue
-     */
     public boolean rightAnswer() {
         Player player = players.get(currentPlayerIndex);
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
@@ -96,11 +91,6 @@ public class GameBetter implements IGame {
         }
     }
 
-    /**
-     * Execute actions for a wrong answer.
-     *
-     * @return whether the game should continue
-     */
     public boolean wrongAnswer() {
         Player player = players.get(currentPlayerIndex);
 

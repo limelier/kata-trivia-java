@@ -42,9 +42,9 @@ public class GameTest {
 			// WARNING: System.out.println() doesn't work in this try {} as the stdout is captured and recorded in memory.
 			System.setOut(inMemory);
 
-			aGame.add("Chet");
-			aGame.add("Pat");
-			aGame.add("Sue");
+			aGame.addPlayer("Chet");
+			aGame.addPlayer("Pat");
+			aGame.addPlayer("Sue");
 
 			boolean notAWinner = false;
 			do {
