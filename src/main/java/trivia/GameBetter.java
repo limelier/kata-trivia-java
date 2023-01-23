@@ -23,12 +23,11 @@ public class GameBetter implements IGame {
         }
     }
 
-    public boolean add(String playerName) {
+    public void add(String playerName) {
         players.add(new Player(playerName));
 
         System.out.println(playerName + " was added");
         System.out.println("They are player number " + players.size());
-        return true;
     }
 
     public void roll(int roll) {
