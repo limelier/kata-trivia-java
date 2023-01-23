@@ -4,7 +4,7 @@ import java.text.MessageFormat;
 import java.util.*;
 
 public class Game {
-    private static final int BOARD_LENGTH = 12;
+    private static final int BOARD_LENGTH = 10;
     private static final int PURSE_WIN_THRESHOLD = 6;
     
     List<Player> players = new ArrayList<>();

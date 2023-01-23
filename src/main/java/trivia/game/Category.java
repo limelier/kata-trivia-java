@@ -4,7 +4,8 @@ public enum Category {
     POP,
     SCIENCE,
     SPORTS,
-    ROCK;
+    ROCK,
+    GEOGRAPHY;
 
     /** Get the name of the category with the first letter capitalized. */
     @Override
