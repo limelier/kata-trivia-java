@@ -1,9 +1,9 @@
-package trivia;
+package trivia.game;
 
 import java.text.MessageFormat;
 import java.util.*;
 
-public class GameBetter implements IGame {
+public class Game {
     private static final int BOARD_LENGTH = 12;
     private static final int PURSE_WIN_THRESHOLD = 6;
     
@@ -11,7 +11,7 @@ public class GameBetter implements IGame {
     Map<Category, Deque<String>> questionDecks = new EnumMap<>(Category.class);
     int currentPlayerIndex = 0;
 
-    public GameBetter() {
+    public Game() {
         // initialize with fake sample questions
         for (var category : Category.values()) {
             Deque<String> questions = new LinkedList<>();
