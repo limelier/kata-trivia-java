@@ -1,25 +1,24 @@
 package trivia;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.text.MessageFormat;
+import java.util.*;
 
 public class GameBetter implements IGame {
     List<Player> players = new ArrayList<>();
-
-    LinkedList<String> popQuestions = new LinkedList<>();
-    LinkedList<String> scienceQuestions = new LinkedList<>();
-    LinkedList<String> sportsQuestions = new LinkedList<>();
-    LinkedList<String> rockQuestions = new LinkedList<>();
-
+    Map<Category, Deque<String>> questionDecks = new EnumMap<>(Category.class);
     int currentPlayerIndex = 0;
 
     public GameBetter() {
-        for (int i = 0; i < 50; i++) {
-            popQuestions.add("Pop Question " + i);
-            scienceQuestions.add(("Science Question " + i));
-            sportsQuestions.add(("Sports Question " + i));
-            rockQuestions.add("Rock Question " + i);
+        // initialize with fake sample questions
+        for (var category : Category.values()) {
+            Deque<String> questions = new LinkedList<>();
+
+            String pattern = category + " Question {0}";
+            for (var i = 0; i < 50; i++) {
+                questions.add(MessageFormat.format(pattern, i));
+            }
+
+            questionDecks.put(category, questions);
         }
     }
 
@@ -49,30 +48,10 @@ public class GameBetter implements IGame {
 
         player.setLocation((player.getLocation() + roll) % 12);
         System.out.println(player.getName() + "'s new location is " + player.getLocation());
-        String category = getCategory(player.getLocation());
+
+        Category category = getCategory(player.getLocation());
         System.out.println("The category is " + category);
-        askQuestion(category);
-    }
-
-    private void askQuestion(String category) {
-        switch (category) {
-            case "Pop" -> System.out.println(popQuestions.removeFirst());
-            case "Science" -> System.out.println(scienceQuestions.removeFirst());
-            case "Sports" -> System.out.println(sportsQuestions.removeFirst());
-            case "Rock" -> System.out.println(rockQuestions.removeFirst());
-            default -> throw new IllegalArgumentException("Unexpected category: " + category);
-        }
-    }
-
-
-    private String getCategory(int location) {
-        return switch (location % 4) {
-            case 0 -> "Pop";
-            case 1 -> "Science";
-            case 2 -> "Sports";
-            case 3 -> "Rock";
-            default -> throw new IllegalStateException("Unexpected value: " + location % 4); // should be impossible
-        };
+        System.out.println(questionDecks.get(category).pop());
     }
 
     public boolean rightAnswer() {
@@ -102,6 +81,13 @@ public class GameBetter implements IGame {
         return true;
     }
 
+    /** Get the category corresponding to a location. */
+    private Category getCategory(int location) {
+        Category[] categories = Category.values();
+        return categories[location % categories.length];
+    }
+
+    /** Check if a player has met the win condition. */
     private boolean hasPlayerWon(Player player) {
         return player.getPurse() >= 6;
     }
