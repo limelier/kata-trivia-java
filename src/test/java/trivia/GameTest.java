@@ -32,7 +32,7 @@ public class GameTest {
 	@Test
 	@Ignore("enable back and set a particular seed to see the output")
 	public void oneSeed() {
-		testSeed(1, true);
+		testSeed(3, true);
 	}
 
 	private String extractOutput(Random rand, IGame aGame) {
@@ -53,7 +53,7 @@ public class GameTest {
 				if (rand.nextInt(9) == 7) {
 					notAWinner = aGame.wrongAnswer();
 				} else {
-					notAWinner = aGame.wasCorrectlyAnswered();
+					notAWinner = aGame.rightAnswer();
 				}
 
 			} while (notAWinner);

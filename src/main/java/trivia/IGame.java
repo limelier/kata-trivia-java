@@ -6,7 +6,7 @@ public interface IGame {
 
 	void roll(int roll);
 
-	boolean wasCorrectlyAnswered();
+	boolean rightAnswer();
 
 	boolean wrongAnswer();
 
